@@ -1,25 +1,20 @@
 <template>
-  <div class="home">
-    <h1>Welcome on my site</h1>
-    <ul v-if="posts">
-      <li>{{ posts }}</li>
+  <div id="admin">
+    <h1>Hello {{ username }}</h1>
+    <ul v-if="getPosts">
+      <li v-for="post in getPosts" :key="post.id">{{ post.title }}</li>
     </ul>
   </div>
 </template>
-
 <script>
 export default {
-  name: "Home",
   computed: {
     username() {
       return this.$store.state.username;
     },
-    posts() {
+    getPosts() {
       return this.$store.state.posts;
     },
-  },
-  created() {
-    this.$store.dispatch("getPosts");
   },
 };
 </script>
